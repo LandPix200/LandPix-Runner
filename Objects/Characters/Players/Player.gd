@@ -17,12 +17,11 @@ func _physics_process(delta):
 	
 	velocity.y += GRAVITY * delta
 
-	var left_pressed = int(Input.is_action_pressed("ui_left"))
-	var right_pressed = int(Input.is_action_pressed("ui_right"))
+	var left_pressed = int(Input.is_action_pressed("ui_left") or $HUD.left_btn.is_pressed())
+	var right_pressed = int(Input.is_action_pressed("ui_right") or $HUD.right_btn.is_pressed())
 	run_direction = right_pressed - left_pressed
 	
 	velocity.x = run_speed * run_direction 
-	
 	jump()
 	manage_animations()
 	manage_direction()
@@ -72,3 +71,21 @@ func manage_direction():
 	if(face_direction == -1):
 		$AnimatedSprite.flip_h = true
 
+
+
+func _on_HUD_jump():
+	if is_on_floor():
+		$Sounds/JumpSound.play()
+		can_double_jump = true
+		velocity.y = -jump_force
+	if not is_on_floor() and can_double_jump:
+		double_jump()
+
+
+func _on_HUD_toLeft():
+	pass
+	
+
+
+func _on_HUD_toRight():
+	pass

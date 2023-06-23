@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Assets/Main Characters/Virtual Guy/Idle (32x32).png" type="Texture" id=1]
 [ext_resource path="res://Assets/Main Characters/Virtual Guy/Double Jump (32x32).png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Main Characters/Virtual Guy/Run (32x32).png" type="Texture" id=5]
 [ext_resource path="res://Sounds/Jump_02.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/Jump_03.wav" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -150,7 +151,7 @@ animations = [ {
 [sub_resource type="CapsuleShape2D" id=19]
 height = 4.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["players"]]
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -173,6 +174,7 @@ stream = ExtResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.6, 0.6 )
 limit_left = 0
 limit_bottom = 1000
 drag_margin_h_enabled = true
@@ -180,3 +182,9 @@ drag_margin_v_enabled = true
 smoothing_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="HUD" parent="." instance=ExtResource( 8 )]
+
+[connection signal="jump" from="HUD" to="." method="_on_HUD_jump"]
+[connection signal="toLeft" from="HUD" to="." method="_on_HUD_toLeft"]
+[connection signal="toRight" from="HUD" to="." method="_on_HUD_toRight"]
