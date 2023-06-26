@@ -173,13 +173,16 @@ stream = ExtResource( 6 )
 stream = ExtResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 103, 2 )
 current = true
-zoom = Vector2( 0.6, 0.6 )
+zoom = Vector2( 0.5, 0.5 )
 limit_left = 0
 limit_bottom = 1000
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
+drag_margin_left = 0.4
+drag_margin_right = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 

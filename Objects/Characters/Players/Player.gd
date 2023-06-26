@@ -25,6 +25,7 @@ func _physics_process(delta):
 	jump()
 	manage_animations()
 	manage_direction()
+	resurection()
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	
@@ -44,6 +45,11 @@ func double_jump():
 	can_double_jump = false
 	velocity.y = -double_jump_force
 	$AnimatedSprite.play("double jump")
+	
+
+func resurection():
+	if global_position.y > $Camera2D.limit_bottom:
+		global_position.y = 0
 
 
 

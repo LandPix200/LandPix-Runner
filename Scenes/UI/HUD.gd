@@ -18,3 +18,7 @@ func _ready():
 
 func _on_Jump_pressed():
 	emit_signal("jump")
+
+
+func _on_settings_pressed() -> void:
+	pass # Replace with function body.
